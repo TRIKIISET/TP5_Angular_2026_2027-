@@ -1,4 +1,4 @@
-<h2>Liste des formations sans composant enfant</h2>
+<h2>Liste des formations sans composants enfant</h2>
 <ul>
     @for(training of trainingCatalog(); track $index){
     <li>
@@ -11,7 +11,7 @@
     }
 </ul>
 
-<h2>Liste des formations avec composant enfant</h2>
+<h2>Liste des formations avec input()</h2>
 
 <ul>
     @for(training of trainingCatalog(); track $index){
@@ -22,13 +22,17 @@
 </ul>
 <button (click)="addTraining()">Ajouter</button>
 
-{{trainingCatalog() |json}}
+<div>
+    {{trainingCatalog() |json}}
+</div>
 
-<h2>Liste des formations avec ngModel</h2>
+<h2>Liste des formations avec model()</h2>
 <ul>
     @for(training of trainingCatalog(); track $index){
     <li>
-        <app-training-detail [formation]="training" (formationChange)="updateTraining($index, $event)"></app-training-detail>
+        <app-training-detail [formation]="training" 
+        (formationChange)="updateTraining($index, $event)"
+        (deleteTraining)="onDeleteTraining($event)"></app-training-detail>
     </li>
     }
 </ul>

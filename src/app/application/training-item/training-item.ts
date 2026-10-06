@@ -10,6 +10,6 @@ import { Training } from '../training';
 })
 export class TrainingItem {
   training = input.required<Training>();
-  position = input.required<number>();
+  indice = input.required<number>({alias:'position'});
 
 }
