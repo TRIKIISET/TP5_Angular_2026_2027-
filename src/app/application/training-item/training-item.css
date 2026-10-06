@@ -1,0 +1,5 @@
+.card { border: 1px solid #ddd; border-radius: 8px; padding: 16px; width: 220px; }
+    .card.free { border-color: #4caf50; }
+    .price { color: #2c3e50; font-weight: bold; }
+    .badge { padding: 4px 8px; border-radius: 4px; font-size: 0.85em; background-color: #f44336; color: white; }
+    .badge-free { background-color: #4caf50; }

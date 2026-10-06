@@ -1,0 +1,36 @@
+<h2>Liste des formations sans composant enfant</h2>
+<ul>
+    @for(training of trainingCatalog(); track $index){
+    <li>
+        Nom: {{training.name}}
+        - NbJours: {{training.nbDays}}
+        <input type="checkbox" [checked]="training.isFree" disabled > Gratuit
+        <!-- - <input type="checkbox" [checked]="training.isFree" (change)="updateTab($index)"> Gratuit -->
+         <!-- - <input type="checkbox" [(ngModel)]="training.isFree" (change)="updateTab2()"> Gratuit -->
+    </li>
+    }
+</ul>
+
+<h2>Liste des formations avec composant enfant</h2>
+
+<ul>
+    @for(training of trainingCatalog(); track $index){
+    <li>
+        <app-training-item [training]="training" [position]="$index+1"></app-training-item>
+    </li>
+    }
+</ul>
+<button (click)="addTraining()">Ajouter</button>
+
+{{trainingCatalog() |json}}
+
+<h2>Liste des formations avec ngModel</h2>
+<ul>
+    @for(training of trainingCatalog(); track $index){
+    <li>
+        <app-training-detail [formation]="training" (formationChange)="updateTraining($index, $event)"></app-training-detail>
+    </li>
+    }
+</ul>
+
+
