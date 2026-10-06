@@ -1,0 +1,21 @@
+<div 
+  class="list-group-item d-flex justify-content-between align-items-center"
+  [class.bg-warning]="!pizza().vegetarian"
+>
+  <div>
+    <img 
+      [src]="pizza().image" 
+      [alt]="pizza().name" 
+      class="rounded-circle" 
+    />
+        <strong class="badge text-bg-dark m-4"> {{ pizza().name }}</strong>
+
+      @if (pizza().vegetarian) {
+        <span class="text-success fw-bold"> Pizza végétarienne</span>
+      }
+  </div>
+    <!-- Prix formaté avec 2 chiffres entiers et 3 décimales -->
+    <strong>
+      Prix: {{ pizza().price |number :'2.3-3' }} DT
+    </strong>
+</div>
