@@ -1,12 +1,15 @@
 <div class="container">
-  <h2 class="mb-4">Liste des Pizzas</h2>
+  <h2> Liste des Pizzas </h2>
   <div class="list-group">
-    @for (p of pizzas(); track p.id) {
+    @for (p of pizzasList(); track p.id) {
       <app-pizza-item 
         [pizza]="p" 
+        (deletePizza)="onRemovePizza($event)"
+        (pizzaChange)="updatePizzaInList($event)"
   />
     } @empty {
       <div class="alert alert-info">Aucune pizza disponible dans le catalogue.</div>
     }
   </div>
 </div>
+{{pizzasList()|json}}

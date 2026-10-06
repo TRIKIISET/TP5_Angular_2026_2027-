@@ -13,9 +13,32 @@
       @if (pizza().vegetarian) {
         <span class="text-success fw-bold"> Pizza végétarienne</span>
       }
+      <div>
+        <button class="btn btn-link" (click)="updateDisplay()">Afficher les commentaires</button>
+@if(display()){
+          <ul>
+          @for(comment of pizza().comments; track comment.id){
+            <li>
+                <app-pizza-comment [comment]="comment"
+                (deleteComment)="onRemoveComment($event)"
+                ></app-pizza-comment>
+            </li>
+          }@empty {
+            <li> Aucun commentaire</li>
+          }
+
+        </ul>
+}
+      </div>
   </div>
-    <!-- Prix formaté avec 2 chiffres entiers et 3 décimales -->
+    <div>
     <strong>
       Prix: {{ pizza().price |number :'2.3-3' }} DT
     </strong>
+    <button class="btn btn-dark" (click)="onDeletePizza()">
+      Supprimer
+    </button>
+
+    </div>
+
 </div>

@@ -2,11 +2,9 @@ import { Component, effect, signal } from '@angular/core';
 import { Training } from '../training';
 import { TrainingItem } from '../training-item/training-item';
 import { JsonPipe } from '@angular/common';
-import { FormsModule } from '@angular/forms';
-import { TrainingDetail } from '../training-detail/training-detail';
 
 @Component({
-  imports: [TrainingItem, TrainingDetail, JsonPipe, FormsModule,],
+  imports: [TrainingItem, JsonPipe],
   selector: 'app-training-list',
   styleUrl: './training-list.css',
   templateUrl: './training-list.html',
@@ -14,14 +12,15 @@ import { TrainingDetail } from '../training-detail/training-detail';
 export class TrainingList {
 
   trainingCatalog = signal<Training[]>([
-    { id:125,name: 'Introduction à Angular', nbDays: 3, isFree: false },
-    { id:587,name: 'Grid & Flexbox', nbDays: 3, isFree: true },
-    { id: 879,name: 'Node JS avancé', nbDays: 4, isFree: false },
-    { id:859,name: 'HTML5 & CSS', nbDays: 2, isFree: true }
+    { id: 125, name: 'Introduction à Angular', nbDays: 3, isFree: false },
+    { id: 587, name: 'Grid & Flexbox', nbDays: 3, isFree: true },
+    { id: 879, name: 'Node JS avancé', nbDays: 4, isFree: false },
+    { id: 859, name: 'HTML5 & CSS', nbDays: 2, isFree: true }
   ])
-  addTraining() {
+
+  onAddTraining() {
     const formation: Training = {
-      id:Math.floor(Math.random()*1000),
+      id: Math.floor(Math.random() * 1000),
       name: 'JS pour les experts',
       nbDays: 2,
       isFree: true,
@@ -35,15 +34,15 @@ export class TrainingList {
     })
   }
 
-  updateTraining(index: number, formation: Training) {
-    this.trainingCatalog.update(formations => formations.map((f, i) =>
-      (i == index) ? formation : f))
-  }
-  onDeleteTraining(formation:Training){
-    this.trainingCatalog.update(formations=>
-    formations.filter(f=>f.id!=formation.id)
+  onRemoveTraining(idTraining: number) {
+    this.trainingCatalog.update(formations =>
+      formations.filter(f => f.id != idTraining)
     )
+  }
 
+  onUpdateTraining(formation: Training) {
+    this.trainingCatalog.update(formations => 
+      formations.map(f =>(f.id == formation.id) ? formation : f))
   }
   /*  updateTab(index: number) {
     this.trainingCatalog.update(formations =>

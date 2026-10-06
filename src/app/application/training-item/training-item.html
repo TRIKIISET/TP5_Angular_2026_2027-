@@ -1,7 +1,9 @@
-<div>
-   Num {{indice()}} : 
-   -- Réf: {{training().id}} 
-   -- {{ training().name }} 
-   -- <strong>Durée :</strong> {{ training().nbDays }} jour(s) 
-   -- <input type="checkbox" [checked]="training().isFree" disabled> Gratuit
-</div>
+Num {{indice()}} :
+-- Réf: {{training().id}}
+-- {{ training().name }}
+-- <strong>Durée :</strong> {{ training().nbDays }} jour(s)
+<!-- -- <input type="checkbox" [checked]="training().isFree" disabled> Gratuit -->
+-- <input type="checkbox" [checked]="training().isFree" 
+(change)="onFreeChange()"> Gratuit
+<button (click)="onDelete()">Supprimer</button>
+<!-- -- <input type="checkbox" [ngModel]="formation().isFree" (ngModelChange)="onFreeChange()"> Gratuite -->

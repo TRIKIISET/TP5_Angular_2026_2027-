@@ -4,37 +4,36 @@
     <li>
         Nom: {{training.name}}
         - NbJours: {{training.nbDays}}
-        <input type="checkbox" [checked]="training.isFree" disabled > Gratuit
+        <input type="checkbox" [checked]="training.isFree" disabled> Gratuit
         <!-- - <input type="checkbox" [checked]="training.isFree" (change)="updateTab($index)"> Gratuit -->
-         <!-- - <input type="checkbox" [(ngModel)]="training.isFree" (change)="updateTab2()"> Gratuit -->
+        <!-- - <input type="checkbox" [(ngModel)]="training.isFree" (change)="updateTab2()"> Gratuit -->
     </li>
     }
 </ul>
 
-<h2>Liste des formations avec input()</h2>
-
+<!-- Application Partie 1 -->
+<!-- <h2>Liste des formations avec composants enfant</h2>
 <ul>
     @for(training of trainingCatalog(); track $index){
     <li>
-        <app-training-item [training]="training" [position]="$index+1"></app-training-item>
+        <app-training-item [training]="training" [position]="$index+1"/>
+    </li>
+    }
+</ul> -->
+<!-- Application Partie 3 -->
+<h2>Liste des formations avec composants enfant</h2>
+<ul>
+    @for(training of trainingCatalog(); track $index){
+    <li>
+        <app-training-item [training]="training" [position]="$index+1"
+        (deleteTraining)="onRemoveTraining($event)" 
+        (trainingChange)="onUpdateTraining($event)" />
     </li>
     }
 </ul>
-<button (click)="addTraining()">Ajouter</button>
+
+<button (click)="onAddTraining()">Ajouter</button>
 
 <div>
     {{trainingCatalog() |json}}
 </div>
-
-<h2>Liste des formations avec model()</h2>
-<ul>
-    @for(training of trainingCatalog(); track $index){
-    <li>
-        <app-training-detail [formation]="training" 
-        (formationChange)="updateTraining($index, $event)"
-        (deleteTraining)="onDeleteTraining($event)"></app-training-detail>
-    </li>
-    }
-</ul>
-
-
