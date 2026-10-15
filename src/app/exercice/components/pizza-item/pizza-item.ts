@@ -11,18 +11,21 @@ import { PizzaComment } from '../pizza-comment/pizza-comment';
   templateUrl: './pizza-item.html',
 })
 export class PizzaItem {
-  pizza = model.required<Pizza>()
+   pizza = input.required<Pizza>() 
   display=signal<boolean>(false);
   deletePizza=output<number>();
-  onRemoveComment(id:number){
-    this.pizza.update(p=>{
-      return {...p, comments: p.comments?.filter(c=> c.id!=id)}
-    })
-  }
+  pizzaChange=output<Pizza>(); /* pour la mise à jour de la pizza après suppression d'un commentaire */
+
+
   updateDisplay(){
     this.display.update(v=>!v)
   }
   onDeletePizza(){
     this.deletePizza.emit(this.pizza().id)
+  }
+
+  onRemoveComment(id:number){
+    const updatedPizza={...this.pizza(), comments: this.pizza().comments?.filter(c=> c.id!=id)}
+    this.pizzaChange.emit(updatedPizza)
   }
 }

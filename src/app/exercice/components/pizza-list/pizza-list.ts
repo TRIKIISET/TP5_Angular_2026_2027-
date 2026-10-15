@@ -39,13 +39,15 @@ export class PizzaList {
       ]
     }
   ]);
-  updatePizzaInList(pizza:Pizza){
-    this.pizzasList.update(pizzas=>
-      pizzas.map(p=>(p.id==pizza.id)?pizza:p)
-    )
-  }
+
   onRemovePizza(id:number){
     this.pizzasList.update(pizzas=> pizzas.filter(p=>p.id!==id))
   }
 
+  /*Mise à jour de la pizza dans la liste après suppression d'un commentaire*/
+updatePizzaInList(updatedPizza: Pizza){
+    this.pizzasList.update(pizzas => 
+      pizzas.map(p => p.id === updatedPizza.id ? updatedPizza : p) 
+    );
+  }
 }
